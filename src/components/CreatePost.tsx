@@ -24,7 +24,6 @@ function CreatePost() {
                 setContent("")
                 setImageUrl("")
                 setShowImageUpload(false)
-
                 toast.success("Post created successfully")
             }
         } catch (error) {
@@ -35,7 +34,6 @@ function CreatePost() {
         }
 
     }
-    console.log('check createpost', user)
 
     return (
         <Card className="mb-6">

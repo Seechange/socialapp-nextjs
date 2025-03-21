@@ -8,6 +8,7 @@ import { ImageIcon, Loader2Icon, SendIcon } from 'lucide-react';
 import { useUser } from '@clerk/nextjs';
 import toast from 'react-hot-toast';
 import { createPost } from '@/action/post.action';
+import ImageUpload from './ImageUpload';
 
 function CreatePost() {
     const { user } = useUser()

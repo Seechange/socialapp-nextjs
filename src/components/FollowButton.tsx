@@ -5,23 +5,15 @@ import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import { toggleFollow } from '@/action/user.action'
 
-function FollowButton({ userId }: { userId: string }) {
+function FollowButton({ userId, type }: { userId: string, type: string }) {
     const [isLoading, setIsLoading] = useState(false)
-    const [status, setStatus] = useState("")
-    const fetchButton = async () => {
-        const res = await toggleFollow(userId);
-        setStatus(res?.typeTest || "")
-    }
-
     const handleFollow = async () => {
         setIsLoading(true)
         try {
             const res = await toggleFollow(userId);
             if (res?.typeTest === "FOLOW") {
-                setStatus("FOLOW")
                 return toast.success("User unfollowed successfully");
             } else {
-                setStatus("UNFOLOW")
                 toast.success("User folowed successfully")
             }
         } catch (error) {
@@ -31,9 +23,6 @@ function FollowButton({ userId }: { userId: string }) {
         }
     };
 
-    useEffect(() => {
-        fetchButton()
-    }, [])
 
     return (
         <Button
@@ -43,7 +32,7 @@ function FollowButton({ userId }: { userId: string }) {
             disabled={isLoading}
             className="w-20"
         >
-            {isLoading ? <Loader2Icon className="size-4 animate-spin" /> : `${status}`}
+            {isLoading ? <Loader2Icon className="size-4 animate-spin" /> : `${type}`}
         </Button>
     )
 }

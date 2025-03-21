@@ -8,6 +8,7 @@ import FollowButton from './FollowButton'
 async function ListFolower() {
     const users = await getRandomUser()
     const usersFolowed = await getRandomUserFlowed()
+    let type;
     // if (users.length === 0) return null
     // if (usersFolowed.length === 0) return null
 
@@ -35,7 +36,7 @@ async function ListFolower() {
                                         <p className="text-muted-foreground">{user._count.followers} followers</p>
                                     </div>
                                 </div>
-                                <FollowButton userId={user.id} />
+                                <FollowButton userId={user.id} type="FOLOW" />
                             </div>
                         ))}
                     </div>
@@ -65,7 +66,7 @@ async function ListFolower() {
                                         <p className="text-muted-foreground">{user._count.followers} followers</p>
                                     </div>
                                 </div>
-                                <FollowButton userId={user.id} />
+                                <FollowButton userId={user.id} type="UNFOLOW" />
                             </div>
                         ))}
                     </div>

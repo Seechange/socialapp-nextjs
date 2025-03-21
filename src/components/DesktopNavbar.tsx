@@ -7,7 +7,7 @@ import { ModeToggle } from "./ui/ModeToggle";
 
 async function DesktopNavbar() {
     const user = await currentUser();
-    if (!user) return null
+    if (!user) return;
 
     return (
         <div className="hidden md:flex items-center space-x-4">

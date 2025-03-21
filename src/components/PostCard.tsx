@@ -13,7 +13,7 @@ import { Textarea } from './ui/textarea';
 import { formatDistanceToNow } from "date-fns"
 import { DeleteAlertDialog } from './DeleteAlertDialog';
 
-type Posts = Awaited<ReturnType<typeof getPosts>>;
+type Posts = NonNullable<Awaited<ReturnType<typeof getPosts>>>;
 type Post = Posts[number];
 
 
@@ -30,8 +30,8 @@ function PostCard({ post, userId }: { post: Post, userId: string | null }) {
         if (isLiking) return;
         try {
             setIsLiking(true);
-            setHasLiked((prev) => !prev);
-            setOptmisticLikes((prev) => prev + (hasLiked ? -1 : 1));
+            setHasLiked((prev: boolean) => !prev);
+            setOptmisticLikes((prev: number) => prev + (hasLiked ? -1 : 1));
             await toggleLike(post.id);
         } catch (error) {
             setOptmisticLikes(post._count.likes);
